@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Add your meta tags, title, stylesheets, etc. -->
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            color: black;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .logo img {
+            border-radius: 50%;
+            margin-top: 10px;
+        }
+
+        .title {
+            text-align: left;
+        }
+
+        .title h1 {
+            margin: 0;
+            text-align: left;
+            font-size: 24px;
+            margin-left: 10px;
+        }
+
+        .title h2 {
+            margin: 0;
+            text-align: left;
+            font-size: 15px;
+            margin-left: 10px;
+        }
+
+        .header_tabel {
+            border-collapse: collapse;
+        }
+
+        .header_tabel td, .header_tabel th {
+            border-bottom: 2px solid black;
+            padding-bottom: 10px;
+        }
+
+        .header_tabel th {
+            background-color: #45a049;
+            color: white;
+            padding: 10px;
+        }
+
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #4CAF50;
+        }
+
+        .custom-table th {
+            border: 1px solid #ddd;
+            padding: 5px;
+            text-align: center;
+            color: white;
+        }
+
+        .custom-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+            background-color: white;
+            color: black;
+        }
+
+        .custom-table th {
+            background-color: green;
+        }
+
+        .signature-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-left: 450px;
+        }
+
+        .signature-table td {
+            text-align: center;
+            padding: 10px;
+        }
+
+       .custom-table tr:nth-child(13n) {
+    page-break-before: always;
+}
+
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+<header>
+ <table border="0" class="header_tabel" >
+    <!-- Top Row -->
+    <tr>
+        <td colspan="1" style="width: 20%;">
+            <div class="logo">
+                <img src="data:image/png;base64,{{ image_data }}" alt="Logo" width="80px" height="80">
+            </div>
+        </td>
+        <td colspan="3" style="width: 80%;">
+            <div class="title">
+                <h1>KECAMATAN SEPATAN</h1>
+                <h2>Jl. Raya Mauk No.89, Sepatan, Kec. Sepatan, Kabupaten Tangerang, Banten 15520</h2>
+            </div>
+        </td>
+    </tr>
+    <!-- Bottom Row -->
+ 
+</table>
+
+    <!-- Bottom Row -->
+ 
+
+
+</header>
+
+<br>
+<br>
+
+    <h2>Laporan Anggaran Desa : &nbsp; {{data_desa}}</h2>
+     <h2>Periode :&nbsp;{{startdate}} - sampai :&nbsp;{{enddate}}  </h2>
+    <br>
+<br>
+  <table class="custom-table">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Nama Barang</th>
+            <th>Jumlah Barang</th>
+            <th>Harga Satuan</th>
+            <th>Total Harga</th>
+        </tr>
+    </thead>
+    <tbody>
+         
+        {% for row in kades %}
+      
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}&nbsp;buah</td>
+                <td>Rp.{{ row[3] }};-</td>
+                <td>Rp.{{ row[4] }};-</td>
+            </tr>
+            
+      
+        {% endfor %}
+        <tr>
+                    <td colspan="3">
+                        Total Belanja :
+                    </td>
+                    <td colspan="2">
+                        Rp.{{ total_belanja }};-
+                    </td>
+                </tr>
+    </tbody>
+</table>
+
+<!-- Signature Table -->
+<table class="signature-table">
+     <tr>
+        <td>Menyetujui,</td>
+    </tr>
+    <tr>
+        <td>
+            <!-- Add your image here -->
+            <img src="data:image/png;base64,{{ image_ttd }}" alt="Pak Camat Signature" width="100px">
+        </td>
+    </tr>
+   
+    <tr>
+        <td>(Pak Camat: Dadang Sudrajat)</td>
+    </tr>
+</table>
+
+
+</body>
+
+</html>

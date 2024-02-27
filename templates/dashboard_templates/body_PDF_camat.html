@@ -1,0 +1,179 @@
+
+
+      <!-- ============================================================== -->
+      <!-- End Topbar header -->
+      <!-- ============================================================== -->
+      <!-- ============================================================== -->
+      <!-- Left Sidebar - style you can find in sidebar.scss  -->
+      <!-- ============================================================== -->
+      <aside class="left-sidebar" data-sidebarbg="skin5">
+        <!-- Sidebar scroll-->
+        <div class="scroll-sidebar">
+          <!-- Sidebar navigation-->
+            {% include "dashboard_templates/side_bar.html" %}
+          <!-- End Sidebar navigation -->
+        </div>
+        <!-- End Sidebar scroll-->
+      </aside>
+      <!-- ============================================================== -->
+      <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+      <!-- ============================================================== -->
+      <!-- ============================================================== -->
+      <!-- Page wrapper  -->
+      <!-- ============================================================== -->
+      <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+    
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+          <!-- ============================================================== -->
+          <!-- Sales Cards  -->
+          <!-- ============================================================== -->
+           <div class="row">
+            <div class="col-md-15">
+                     <div class="card">
+   <div class="card-body d-flex left-content-between align-items-center "style="margin-right: 30px;">
+    
+ <form style="margin-left: 20px;" method="GET" action="/generate_pdf_camat">
+
+    <div style="margin-bottom: 10px;">
+        <label for="startDate" style="display: inline-block; margin-right: 10px;">Desa:</label>
+                                {% for data_item in data_list1 %}
+
+      <select class="form-control" name="Desa" id="Desa" class="form-control btn btn-success">
+                                    {% for option in data_item.options %}
+                                        <option value="{{ option }}" >{{ option }}</option>
+                                    {% endfor %}
+                                </select>
+                                                        {% endfor %}
+
+    </div>
+
+
+    <div style="margin-bottom: 10px;">
+        <label for="startDate" style="display: inline-block; margin-right: 10px;">Dari Tanggal:</label>
+        <input type="date" id="startDate" name="startDate" class="form-control btn btn-success">
+    </div>
+
+    <div style="margin-bottom: 10px;">
+        <label for="endDate" style="display: inline-block; margin-right: 10px;">Sampai Tanggal:</label>
+        <input type="date" id="endDate" name="endDate" class="form-control btn btn-success">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Cetak PDF</button>
+</form>
+
+
+</div>
+</div>
+<div class="col-md-15" style="background-color: #f0f0f0;"> <!-- Adjust the color code as needed -->
+    <div class="card">
+        <div class="card-body d-flex center-content-between align-items-center" style="margin-right: 30px;">
+
+          <center><h4>Laporan Anggaran :</h4></center>
+
+        </div>
+    </div>
+</div>
+
+<div class="col-md-15" style="background-color: #f0f0f0;"> <!-- Adjust the color code as needed -->
+    <div class="card">
+        <div class="card-body d-flex left-content-between align-items-center" style="margin-right: 30px;">
+   <iframe id="pdfViewer" width="100%" height="600" frameborder="0"></iframe>
+   
+     {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.querySelector('form');
+    const iframe = document.getElementById('pdfViewer');
+
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        // Get the form data (start date and end date)
+        const startDate = document.getElementById('startDate').value;
+        const endDate = document.getElementById('endDate').value;
+        const Desa = document.getElementById('Desa').value;
+
+        console.log("Start Date:", startDate);
+        console.log("End Date:", endDate);
+        console.log("Desa:", Desa);
+
+
+        // Construct the URL for the /generate_pdf route with parameters
+        const pdfUrl = `/generate_pdf_camat?startDate=${startDate}&endDate=${endDate}&Desa=${Desa}`;
+
+        console.log("PDF URL:", pdfUrl);
+
+        // Update the iframe src attribute to load the PDF
+        iframe.src = pdfUrl;
+    });
+});
+
+</script>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ============================================================== -->
+          <!-- Sales chart -->
+          <!-- ============================================================== -->
+        
+          <!-- ============================================================== -->
+          <!-- Sales chart -->
+          <!-- ============================================================== -->
+          <!-- ============================================================== -->
+          <!-- Recent comment and chats -->
+          <!-- ============================================================== -->
+   
+          <!-- ============================================================== -->
+          <!-- Recent comment and chats -->
+          <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <!-- <footer class="footer text-center">
+          All Rights Reserved by Matrix-admin. Designed and Developed by
+          <a href="https://www.wrappixel.com">WrapPixel</a>.
+        </footer> -->
+        <!-- ============================================================== -->
+        <!-- End footer -->
+        <!-- ============================================================== -->
+      </div>
+      <!-- ============================================================== -->
+      <!-- End Page wrapper  -->
+      <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+

@@ -1,0 +1,38 @@
+<div id="modaledit{{ row[0] }}" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Update Information</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('update_data_camat.update_camat', id_belanja=row[0]) }}" method="POST">
+                    {{ form.hidden_tag() }}
+                    <div class="form-group">
+                        {% for data_item in data_list1 %}
+                            <label>{{ data_item.label }}:</label>
+                         
+                         <select class="form-control" name="{{ data_item.name }}">
+                                <option value="Pengajuan">
+                                    Pengajuan
+                                </option>
+                                <option value="Di Proses">
+                                    Di Proses
+                                </option>
+                                <option value="Di Setujui">
+                                    Di Setujui
+                                </option>
+                                 <option value="Di Tolak">
+                                    Di Tolak
+                                </option>
+                                </select>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-success" type="submit">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

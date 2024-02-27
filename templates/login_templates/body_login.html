@@ -1,0 +1,35 @@
+<body>
+    <div class="main">  
+        <input type="checkbox" id="chk" aria-hidden="true">
+
+       
+
+        <div class="signup">
+            <form method="POST" action="{{ url_for('index') }}">
+                {{ login_form.hidden_tag() }}
+                <label for="chk" aria-hidden="true"><center>LOGIN</center></label>
+                <input type="email" name="email" placeholder="Email" required="">
+                <input type="password" name="password" placeholder="Password" required="">
+                <button type="submit" name="submit_login">Masuk</button>
+            </form>
+            <br>
+             <center>
+           {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                        </center>  
+        </div>
+
+
+    </div>
+
+    {{messages}}
+    <!-- Include your JavaScript code for displaying flash messages here -->
+</body>
+</html>
